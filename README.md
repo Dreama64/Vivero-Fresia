@@ -1,56 +1,49 @@
 # Vivero Fresia
 
-Sitio estático en HTML, CSS y JavaScript para Vivero Fresia, en Picarquín, San Francisco de Mostazal, Chile. No requiere compilación ni servicios externos para mostrar el catálogo.
+Tienda campestre para un vivero de Picarquín, San Francisco de Mostazal. Mantiene HTML, CSS y JavaScript sin framework e incorpora un servidor Node.js 24 con SQLite para administrar productos y fotografías.
 
-## Vista previa local
-
-Desde esta carpeta, ejecutar `python -m http.server 8000` y abrir `http://localhost:8000`. No se configura un despliegue nuevo ni se modifica producción en esta propuesta.
-
-## Cambios de interfaz y funcionamiento
-
-### Tienda y pedidos por WhatsApp
-
-La interfaz usa una estética natural y campestre con fotografías de plantas del repositorio. El catálogo incluye buscador tolerante a tildes y categorías. El carrito permite agregar productos, modificar cantidades entre 1 y 99, quitar productos y conservar la selección en este navegador. Si el almacenamiento está bloqueado o contiene datos inválidos, se usa un carrito en memoria o se descartan las entradas inválidas.
-
-El pedido reúne nombres y cantidades en un único enlace a WhatsApp; el cliente revisa y envía el mensaje allí. No hay cobro en línea, cálculo de total, reserva de stock ni promesa de entrega: el vivero confirma precios, disponibilidad y coordinación de compra. No se inventan precios para simular una venta. Las consultas individuales funcionan sin JavaScript; el carrito y los filtros requieren JavaScript. No se guarda información personal del cliente.
-
-Para actualizar productos, editar las tarjetas estáticas de `index.html`, conservando identificadores `data-id` únicos y estables y su botón `data-add` correspondiente. Los identificadores mantienen la relación con los carritos guardados. No hay panel de administración ni sincronización de stock.
-
-La revisión del carrito cubre búsqueda sin tildes, categorías, resultados vacíos, persistencia al recargar, cantidades, eliminación, carrito vacío, enlace de pedido completo y recuperación de foco. Todas estas pruebas pasan a 320, 390, 768 y 1440 px. Las categorías son agrupaciones de navegación; los nombres botánicos se conservan pendientes de confirmación.
-
-- Diseño adaptable con navegación visible, galería, historia y contacto.
-- Se conservan los 15 nombres de plantas y las tres conservas del sitio original. No se inventan precios, stock, horarios ni dirección exacta. Los nombres botánicos requieren confirmación del propietario.
-- WhatsApp usa el número del JavaScript original y mensajes específicos para cada producto. El enlace permite consultar; no constituye una compra ni garantiza disponibilidad.
-- Se retiran los precios vacíos, el mapa sin implementar, el carácter suelto del encabezado y los enlaces sociales que apuntaban a videos o a una sección de un perfil personal. Confirmar perfiles comerciales antes de reincorporarlos.
-- Se elimina la reproducción musical al primer clic y el carrusel automático. Los archivos originales permanecen disponibles en el repositorio.
-- Fotografías ampliables mediante botones y diálogo nativo: teclado, Escape, foco contenido en el diálogo y retorno de foco al cerrarlo.
-- Enlace para saltar al contenido, foco visible, textos alternativos, jerarquía de encabezados y respeto por movimiento reducido.
-- Título y descripción únicos, idioma es-CL, metadatos Open Graph básicos y favicon. No se añade dominio canónico, ubicación exacta ni datos estructurados comerciales sin confirmación.
-- Copias WebP de las fotografías utilizadas: 1.446.624 bytes frente a 2.584.666 bytes de sus originales (44 % menos). Carga diferida salvo logo y portada, sin fuentes remotas ni bibliotecas de interfaz.
-
-## Pruebas
-
-No existían pruebas, gestor de paquetes ni flujo de integración continua en la versión original. Se agrega una prueba de navegador reproducible:
+## Uso
 
 ```sh
-npm install
-npx playwright install chromium
-npm test
+npm run setup
+npm start
 ```
 
-Se puede usar Chrome instalado mediante `BROWSER_CHANNEL=chrome`. El entorno de revisión utilizó Playwright del runtime compartido mediante `PLAYWRIGHT_MODULE`, sin instalar dependencias en el sitio.
+Tienda: `http://127.0.0.1:8768`. Panel privado: `http://127.0.0.1:8768/admin`. La primera configuración pide una contraseña; no hay credenciales por defecto. Los datos se guardan en `data/` por defecto, excluido de Git. En producción debe configurarse un disco persistente y HTTPS.
 
-Resultado: pruebas aprobadas en 320, 390, 768 y 1440 px: sin desbordamiento horizontal, 18 productos presentes, imágenes cargadas, anclas válidas, enlaces de WhatsApp con número y mensaje, apertura por teclado, cierre con Escape y botón, y recuperación del foco. Catálogo y contacto disponibles con JavaScript desactivado. Sin errores de JavaScript ni respuestas HTTP fallidas en estas pruebas. También se verifican `node --check script.js` y `git diff --check`.
+- [Guía para administrar productos](ADMINISTRACION.md)
+- [Alojamiento, acceso, respaldos y pruebas](ALOJAMIENTO.md)
 
-Las pruebas no envían mensajes ni verifican que el número siga siendo atendido. La revisión de accesibilidad es parcial, no una certificación. El propietario debe confirmar nombres de productos, vigencia del contacto y fotografías de portada (ya presentes en el sitio original) antes de publicar.
+## Funciones
 
-## Archivos
+- Portada natural y campestre, catálogo adaptable, categorías y búsqueda tolerante a tildes.
+- Carrito persistente en el navegador con cantidades y pedido conjunto por WhatsApp.
+- Panel para subir fotografías, crear y editar productos, categorías, descripción y precio en CLP; marcar agotado, ocultar o eliminar con confirmación.
+- Productos y fotografías guardados en el servidor y disponibles desde otros dispositivos. Los cambios se ven al recargar la tienda.
+- Precio opcional: si falta, se muestra «Precio a consultar» y no se inventa total. Si todos los productos del carrito tienen precio, se calcula el total de productos. La compra y sus condiciones se confirman por WhatsApp; no hay cobro ni reserva automática.
+- Imágenes originales preservadas; 21 copias WebP utilizadas reducen el peso un 44 % frente a sus originales. Las fotos nuevas se optimizan antes de subirlas.
+- Textos alternativos, navegación con teclado, diálogos nativos con retorno de foco, enlace para saltar contenido y movimiento reducido.
+- Título, descripción, idioma es-CL y metadatos básicos. Panel sin indexación; no se inventa dominio canónico ni ubicación exacta.
 
-- `index.html`: contenido estático indexable.
-- `styles.css`: diseño y adaptación a pantallas.
-- `shop.css`: presentación de la tienda, filtros y carrito.
-- `script.js`: carrito persistente, búsqueda, filtros y ampliación de fotografías.
-- `imagenes/web/`: versiones optimizadas; originales preservados en `imagenes/`.
-- `tests/browser.cjs`: revisión funcional en Chromium.
+Se conservan los 18 productos y el contacto originales, pendientes de confirmar su vigencia y nombres botánicos. No se agregan precios ni condiciones comerciales ficticias. Se corrigen HTML inválido, precios vacíos, enlaces sociales a videos, música automática y la ampliación de fotos inaccesible del sitio original.
 
-La propuesta se entrega en una rama y un pull request. Fusionar o publicar requiere aprobación del usuario.
+## Arquitectura
+
+- `index.html`, `styles.css`, `shop.css`, `script.js`: tienda. El servidor inserta el catálogo público actualizado en el HTML para que también esté disponible sin JavaScript.
+- `admin/`: interfaz del panel. Los datos y las escrituras se protegen en el servidor, no solo ocultando la interfaz.
+- `server/`: HTTP, sesiones, validación, fotos, renderizado y SQLite. Sin dependencias de ejecución externas.
+- `catalog.seed.json`: importación inicial, una sola vez, de los productos originales.
+- `data/`: SQLite, sesiones y fotos subidas; nunca incluir en un repositorio público.
+- `tests/`: pruebas de servidor, tienda y panel.
+
+La copia HTML también puede abrirse como sitio estático de referencia, pero no recibirá cambios del panel. Para ofrecer administración se debe usar el servidor Node, no GitHub Pages ni el servidor estático de Python.
+
+## Validación
+
+`npm test` verifica acceso privado, protección de archivos, origen y CSRF, subida de foto, validación de precio, texto escapado, edición, ocultación, agotados, conflictos de versión, persistencia tras reiniciar, eliminación, logout y límite de intentos.
+
+Las pruebas de tienda cubren 320, 390, 768 y 1440 px: catálogo, imágenes, anclas, búsqueda, categorías, carrito persistente, cantidades, resultados vacíos, mensajes de WhatsApp, navegación con teclado y almacenamiento bloqueado/corrupto. El panel se prueba a 390 y 1440 px: login, foto, creación, precio, total del carrito, agotado, ocultación, edición, confirmación de borrado y cierre de sesión.
+
+Se comprueban además la sintaxis JavaScript y `git diff --check`. La revisión de accesibilidad es parcial. Las pruebas no envían mensajes ni verifican que el número de WhatsApp siga siendo atendido.
+
+No hay hosting contratado ni despliegue de producción. Los cambios se entregan en el pull request para revisión; fusionar y publicar requiere aprobación del usuario.

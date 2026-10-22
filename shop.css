@@ -1,4 +1,8 @@
 /* Storefront: earthy colors, foliage photography and clear shopping controls. */
+.product-description { font-size:12px; color:var(--muted); margin-bottom:12px; white-space:pre-line; overflow-wrap:anywhere; }
+.sold-out { color:#80501d; font-size:13px; font-weight:600; margin-top:8px; }
+.product .add:disabled { background:#dce1d1; color:#59624e; cursor:default; }
+.cart-total { margin-top:20px; font-weight:600; }
 :root { --paper:#f6f3e8; --green:#234b2c; --ink:#233b27; --muted:#586451; --line:#d6d9c7; }
 [hidden] { display:none !important; }
 .header { padding-block:20px; position:sticky; top:0; z-index:4; background:var(--paper); box-shadow:0 0 0 1px var(--paper); }

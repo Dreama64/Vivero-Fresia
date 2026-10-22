@@ -5,6 +5,8 @@ const products = [...document.querySelectorAll('.product')].map(card => ({
   name: card.querySelector('h3').textContent,
   category: card.dataset.category,
   image: card.querySelector('img').getAttribute('src'),
+  price: card.dataset.price ? Number(card.dataset.price) : null,
+  available: card.dataset.available !== 'false',
   card
 }));
 const byId = new Map(products.map(product => [product.id, product]));
@@ -14,7 +16,7 @@ try {
   const saved = JSON.parse(localStorage.getItem(storageKey));
   if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
     for (const [id, quantity] of Object.entries(saved)) {
-      if (byId.has(id) && Number.isInteger(quantity) && quantity > 0 && quantity <= 99) cart[id] = quantity;
+      if (byId.has(id) && byId.get(id).available && Number.isInteger(quantity) && quantity > 0 && quantity <= 99) cart[id] = quantity;
     }
   }
 } catch { /* Storage may be unavailable; the cart still works for this visit. */ }
@@ -54,6 +56,7 @@ function element(tag, text, className) {
   if (className) node.className = className;
   return node;
 }
+const money = value => value === null ? 'Precio a confirmar' : new Intl.NumberFormat('es-CL', { style:'currency', currency:'CLP', maximumFractionDigits:0 }).format(value);
 function changeQuantity(id, quantity) {
   if (quantity <= 0) delete cart[id];
   else cart[id] = Math.min(99, quantity);
@@ -74,7 +77,7 @@ function renderCart() {
     image.alt = '';
     row.append(image);
     const info = element('div', '', 'cart-item-info');
-    info.append(element('h3', product.name), element('p', 'Precio a confirmar'));
+    info.append(element('h3', product.name), element('p', money(product.price)));
     const controls = element('div', '', 'quantity');
     const minus = element('button', '−');
     minus.type = 'button';
@@ -111,10 +114,15 @@ function renderCart() {
   }
   document.querySelector('#cart-empty').hidden = count > 0;
   document.querySelector('#cart-summary').hidden = count === 0;
+  const total = Object.entries(cart).reduce((sum, [id, quantity]) => sum + (byId.get(id).price || 0) * quantity, 0);
+  const completePrices = Object.keys(cart).every(id => byId.get(id).price !== null);
+  let totalLine = document.querySelector('#cart-total');
+  if (!totalLine) { totalLine = element('p', '', 'cart-total'); totalLine.id = 'cart-total'; document.querySelector('#cart-summary').prepend(totalLine); }
+  totalLine.textContent = completePrices ? `Total de productos: ${money(total)}` : 'Total a confirmar por WhatsApp';
   const checkout = document.querySelector('#checkout');
   if (count) {
-    const lines = Object.entries(cart).map(([id, quantity]) => `• ${quantity} × ${byId.get(id).name}`);
-    const message = `Hola, Vivero Fresia. Quisiera realizar este pedido:\n\n${lines.join('\n')}\n\n¿Me confirman precios, disponibilidad y cómo coordinar la compra?`;
+    const lines = Object.entries(cart).map(([id, quantity]) => `• ${quantity} × ${byId.get(id).name}${byId.get(id).price !== null ? ' (' + money(byId.get(id).price) + ' c/u)' : ''}`);
+    const message = `Hola, Vivero Fresia. Quisiera realizar este pedido:\n\n${lines.join('\n')}\n\n${completePrices ? 'Total de productos: ' + money(total) + '\n' : ''}¿Me confirman precios, disponibilidad y cómo coordinar la compra?`;
     checkout.href = `https://wa.me/56945973179?text=${encodeURIComponent(message)}`;
   } else checkout.removeAttribute('href');
 }
@@ -126,6 +134,7 @@ document.querySelectorAll('[data-add]').forEach(button => {
   const product = byId.get(button.dataset.add);
   button.setAttribute('aria-label', `Agregar ${product.name} al carrito`);
   button.addEventListener('click', () => {
+    if (!product.available) return;
     if (cart[product.id] === 99) return announce('Puedes agregar hasta 99 unidades por producto.');
     changeQuantity(product.id, (cart[product.id] || 0) + 1);
     announce(`${product.name} se agregó al carrito.`);

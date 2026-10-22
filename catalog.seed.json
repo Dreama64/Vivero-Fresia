@@ -1,0 +1,182 @@
+[
+  {
+    "id": "p1",
+    "name": "Lilium longiflorum",
+    "category": "Flores",
+    "image": "imagenes/web/1.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p2",
+    "name": "Híbrido de té",
+    "category": "Flores",
+    "image": "imagenes/web/2.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p3",
+    "name": "Aloe faroe",
+    "category": "Cáctus y suculentas",
+    "image": "imagenes/web/3.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p4",
+    "name": "Cáctus",
+    "category": "Cáctus y suculentas",
+    "image": "imagenes/web/4.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p5",
+    "name": "Rosa mística",
+    "category": "Flores",
+    "image": "imagenes/web/5.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p6",
+    "name": "Lilium otoñal",
+    "category": "Flores",
+    "image": "imagenes/web/6.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p7",
+    "name": "Dimorfoteca",
+    "category": "Flores",
+    "image": "imagenes/web/7.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p8",
+    "name": "Azucena de porcelana",
+    "category": "Otras plantas",
+    "image": "imagenes/web/8.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p9",
+    "name": "Cáctus eriosyce",
+    "category": "Cáctus y suculentas",
+    "image": "imagenes/web/9.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p10",
+    "name": "Cáctus lirio",
+    "category": "Cáctus y suculentas",
+    "image": "imagenes/web/10.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p11",
+    "name": "Rosa",
+    "category": "Flores",
+    "image": "imagenes/web/11.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p12",
+    "name": "Nopal",
+    "category": "Cáctus y suculentas",
+    "image": "imagenes/web/12.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p13",
+    "name": "Sábila",
+    "category": "Cáctus y suculentas",
+    "image": "imagenes/web/13.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p14",
+    "name": "Echeveria",
+    "category": "Cáctus y suculentas",
+    "image": "imagenes/web/14.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p15",
+    "name": "Cryptocorine atfinis",
+    "category": "Otras plantas",
+    "image": "imagenes/web/15.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p16",
+    "name": "Mermelada de damasco · ½ kilo",
+    "category": "Mermeladas y conservas",
+    "image": "imagenes/web/merme1.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p17",
+    "name": "Mermelada de damasco · 1 kilo",
+    "category": "Mermeladas y conservas",
+    "image": "imagenes/web/merme2.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  },
+  {
+    "id": "p18",
+    "name": "Conserva de durazno · 1 kilo",
+    "category": "Mermeladas y conservas",
+    "image": "imagenes/web/merme3.webp",
+    "description": "",
+    "price": null,
+    "available": true,
+    "visible": true
+  }
+]

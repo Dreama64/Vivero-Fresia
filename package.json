@@ -1,6 +1,7 @@
 {
   "name": "vivero-fresia",
   "private": true,
-  "scripts": { "test": "node tests/browser.cjs" },
-  "devDependencies": { "playwright": "^1.56.0" }
+  "engines": { "node": ">=24.0.0 <25" },
+  "scripts": { "start": "node server/app.cjs", "setup": "node server/setup.cjs", "test": "node --test tests/server.test.cjs", "test:browser": "node tests/browser.cjs", "test:admin": "node tests/admin.cjs" },
+  "devDependencies": { "playwright": "1.62.1" }
 }
