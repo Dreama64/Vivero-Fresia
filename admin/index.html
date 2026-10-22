@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es-CL">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Administrar productos | Vivero Fresia</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/admin/admin.css"><script src="/admin/admin.js" defer></script></head>
+<body>
+<header class="admin-header"><a class="brand" href="/">Vivero <strong>Fresia</strong></a><a href="/" target="_blank" rel="noopener">Ver tienda ↗</a><button id="logout" type="button" hidden>Cerrar sesión</button></header>
+<main class="admin-main">
+  <div class="page-heading"><p class="eyebrow">Tu vivero, a tu manera</p><h1>Administrar productos</h1><p>Fotos, precios y disponibilidad, todo en un mismo lugar.</p></div>
+  <p id="message" role="status" aria-live="polite"></p>
+  <noscript>Activa JavaScript para administrar la tienda.</noscript>
+  <section id="login-panel" class="panel" hidden aria-labelledby="login-title"><h2 id="login-title">Bienvenido al vivero</h2><p>Ingresa con tu contraseña para administrar la tienda.</p><form id="login-form"><label for="password">Contraseña<input id="password" type="password" autocomplete="current-password" required maxlength="200"></label><button class="button" type="submit">Ingresar</button></form><p class="hint">Si olvidaste la contraseña, pide al encargado del alojamiento que la restablezca.</p></section>
+  <section id="dashboard" hidden aria-labelledby="list-title"><div class="list-heading"><h2 id="list-title">Tus productos</h2><button id="new-product" class="button" type="button">+ Agregar producto</button></div><label for="admin-search">Buscar producto<input id="admin-search" type="search" placeholder="Nombre o categoría"></label><p id="list-count" role="status"></p><button id="refresh" type="button">Actualizar lista</button><div id="product-list"></div></section>
+  <section id="editor" class="panel" hidden aria-labelledby="editor-title"><h2 id="editor-title" tabindex="-1">Agregar producto</h2><form id="product-form">
+    <label for="name">Nombre del producto<input id="name" maxlength="100" required></label>
+    <label for="category">Categoría<input id="category" list="categories" maxlength="60" required placeholder="Por ejemplo, Flores"><datalist id="categories"></datalist></label>
+    <label for="description">Descripción<textarea id="description" maxlength="2000" rows="4" placeholder="Tamaño, características o cuidados que conozcas"></textarea></label>
+    <label for="price">Precio en pesos chilenos<input id="price" type="number" min="0" max="999999999" step="1" inputmode="numeric" placeholder="Ejemplo: 3500"></label><p class="hint">Déjalo vacío para mostrar «Precio a consultar».</p>
+    <label for="photo">Foto del producto<input id="photo" type="file" accept="image/jpeg,image/png,image/webp"></label><p class="hint">JPG, PNG o WebP. La foto se optimiza antes de guardarse. En el celular puedes elegir una foto de tu galería.</p><img id="photo-preview" alt="Vista previa de la foto del producto" hidden>
+    <label class="check"><input id="available" type="checkbox" checked> Disponible para agregar al carrito</label><p class="hint">Si lo desmarcas, aparecerá como agotado.</p>
+    <label class="check"><input id="visible" type="checkbox" checked> Mostrar en la tienda</label><p class="hint">Puedes guardar un producto oculto y publicarlo más adelante.</p>
+    <div class="form-actions"><button id="save-product" class="button" type="submit">Guardar producto</button><button id="cancel-edit" type="button">Cancelar</button></div>
+  </form></section>
+</main>
+<dialog id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">¿Eliminar producto?</h2><p id="delete-description"></p><p>Desaparecerá de la tienda. También puedes cancelarlo y usar «Ocultar» para conservarlo.</p><div class="form-actions"><button id="cancel-delete" type="button">Cancelar</button><button id="confirm-delete" class="danger" type="button">Eliminar producto</button></div></dialog>
+</body></html>
