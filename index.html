@@ -1,227 +1,56 @@
- <!DOCTYPE html>
-  <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vivero Fresia</title>
-    <link rel="stylesheet" href="styles.css">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Música de Fondo</title>
-    <script defer>
-        document.addEventListener("click", function () {
-            let audio = document.getElementById("background-music");
-            
-            if (audio.paused) {
-                audio.play();
-            }
-        }, { once: true }); // Se ejecuta solo una vez
-    </script>
-  </head>
-  <body>
-
-    <audio id="background-music" loop style="display: none;">
-      <source src="musica/Bohemian Garden.mp3" type="audio/mpeg">
-      Tu navegador no soporta audio.
-  </audio>
-
-  
-    <header>}
-      <aside class="redes-sociales">
-        <h3>Síguenos en redes sociales</h3>
-        <ul>
-          <li>
-            <a href="https://www.facebook.com/marisela.benavente.3/friends_mutual" target="_blank">
-              <img src="iconos/icons8-facebook-nuevo-30.png" alt="Icono de Facebook">
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=sjxLF4IYnJc" target="_blank">
-              <img src="iconos/icons8-instagram-30.png" alt="Icono de Twitter">
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=PR5XF8O4AlA" target="_blank">
-              <img src="iconos/icons8-pinterest-30.png" alt="Icono de Instagram">
-            </a>
-          </li>
-        </ul>
-      </aside>
-
-      
-      <div class="logo">
-        <img src="imagenes/logos.jpg" alt="Logo de Vivero Fresia" class="logo-img">
-        </div>
-      <nav class="nav">
-        <ul>
-          <li><a href="#galeria">Galería</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-          <li><a href="#quienes-somos">¿Quiénes somos?</a></li>
-        </ul>
-      </nav>
-      <p class="bienvenida">¡Bienvenidos al Vivero Fresia!.</p>
-    </header>
-
-    <div class="slider">
-      <ul>
-          <li>
-              <img src="imagenes/casa.jpg">
-          </li>
-          <li>
-              <img src="imagenes/casa1.jpg">
-          </li>
-          <li>
-              <img src="imagenes/casa2.jpg">
-          </li>
-          <li>
-            <img src="imagenes/casa3.jpg">
-        </li>
-      </ul>
-  </div>
-
-  
-    <main>
-
-
-     
-      <section id="quienes-somos">
-        <h2>¿Quiénes somos?</h2>
-        <p class="bienvenidasa">Somos un vivero ubicado en San Francisco de Mostazal, Picarquin, que fue fundado en el año 2020 con la misión de ofrecer variedades de flores,plantas y suculentas de alta calidad para nuestros clientes.</p>
-      </section>
-      <section id="galeria">
-      <h2>Galeria de Flores y Plantas</h2>
-      <div class="galeria-flores">
-        <div class="tarjeta-flor">
-          <img src="imagenes/1.jpg" alt="Flor 1" class="imagen">
-          <h3>Lilium longiflorum</h3>
-          <p>Precio: $</p>
-        </div>
-        <div class="tarjeta-flor">
-          <img src="imagenes/2.jpg" alt="Flor 2" class="imagen">
-          <h3>Híbrido de té</h3>
-          <p>Precio: $</p>
-        </div>
-        <!-- Agrega más tarjetas de flores aquí -->
-        <div class="tarjeta-flor">
-          <img src="imagenes/3.jpg" alt="Flor 2" class="imagen">
-          <h3>Aloe faroe</h3>
-          <p>Precio: $</p>
-      </div>
-      <div class="tarjeta-flor">
-        <img src="imagenes/4.jpg" alt="Flor 2" class="imagen">
-        <h3>Cáctus</h3>
-        <p>Precio: $</p>
-    </div>
-    <div class="tarjeta-flor">
-      <img src="imagenes/5.jpg" alt="Flor 2" class="imagen">
-      <h3>Rosa mística</h3>
-      <p>Precio: $</p>
-  </div>
-  <div class="tarjeta-flor">
-    <img src="imagenes/6.jpg" alt="Flor 2" class="imagen">
-    <h3>Lilium otoñal</h3>
-    <p>Precio: $</p>
-  </div>
-  <div class="tarjeta-flor">
-    <img src="imagenes/7.jpg" alt="Flor 2" class="imagen">
-    <h3>Dimorfoteca</h3>
-    <p>Precio: $</p>
-  </div>
-  <div class="tarjeta-flor">
-    <img src="imagenes/8.jpg" alt="Flor 2" class="imagen">
-    <h3>Azucena de porcelana</h3>
-    <p>Precio: $</p>
-  </div>
-  <div class="tarjeta-flor">
-    <img src="imagenes/9.jpg" alt="Flor 2" class="imagen">
-    <h3>Cáctus eriosyce</h3>
-    <p>Precio: $</p>
-  </div>
-  <div class="tarjeta-flor">
-    <img src="imagenes/10.jpg" alt="Flor 2" class="imagen">
-    <h3>Cáctus lirio</h3>
-    <p>Precio: $</p>
-  </div>
-  <div class="tarjeta-flor">
-    <img src="imagenes/11.jpg" alt="Flor 2" class="imagen">
-    <h3>Rosa</h3>
-    <p>Precio: $</p>
-  </div>
-  <div class="tarjeta-flor">
-    <img src="imagenes/12.jpg" alt="Flor 2" class="imagen">
-    <h3>Nopal</h3>
-    <p>Precio: $</p>
-  </div>
-  <div class="tarjeta-flor">
-    <img src="imagenes/13.jpg" alt="Flor 2" class="imagen">
-    <h3>Sábila</h3>
-    <p>Precio: $</p>
-  </div>
-  <div class="tarjeta-flor">
-    <img src="imagenes/14.jpg" alt="Flor 2" class="imagen">
-    <h3>Echeveria</h3>
-    <p>Precio: $</p>
-  </div>
-  <div class="tarjeta-flor">
-    <img src="imagenes/15.jpg" alt="Flor 2" class="imagen">
-    <h3>Cryptocorine atfinis</h3>
-    <p>Precio: $</p>
-  </div>
-  </section> 
-
-
-  <!– SEGUNDA GAKERIA DE MERMELADAS–>
-
-  <section id="galeria2">
-    <h2>Mermeladas</h2>
-    <div class="galeria-flores">
-      <div class="tarjeta-flor">
-        <img src="imagenes/merme1.jpg" alt="Flor 1" class="imagen">
-        <h3>Mermelada 1/2 kilo damasco</h3>
-        <p>Precio: $</p>
-      </div>
-      <div class="tarjeta-flor">
-        <img src="imagenes/merme2.jpg" alt="Flor 2" class="imagen">
-        <h3>Mermelada 1 kilo damasco</h3>
-        <p>Precio: $</p>
-      </div>
-    <div class="tarjeta-flor">
-      <img src="imagenes/merme3.jpg" alt="Flor 2" class="imagen">
-      <h3>Conserva 1k durazno</h3>
-      <p>Precio: $</p>
-  </div>
-  
-    
-</section>
-
-
-
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>¿Quieres contactarnos? Haz clic en el botón de WhatsApp para enviarnos un mensaje.</p>
-    <button id="whatsapp-btn" style="display: block; margin: 0 auto;">Contactarnos en WhatsApp</button>
-    <div id="mapa"></div>
-    </section>
-    </main>
-
-
-    <!-- Contenedor para la imagen expandida -->
-    <div class="imagen-expandida" style="display: none;">
-      <img src="" alt="" class="imagen-grande">
-      <button class="cerrar">Cerrar</button>
-    </div>
-   
-
-    <footer class="footer">
-      <p>&copy; 2025 Vivero Fresia. Todos los derechos reservados.</p>
-    </footer>
-
-  
-    
-    <button id="scrollTopBtn">⬆</button>
-    
-    <script src="script.js"></script>
-    
-  </body>
-  </html>
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vivero Fresia | Flores y plantas en Picarquín, Mostazal</title>
+  <meta name="description" content="Conoce las flores, plantas, suculentas y conservas de Vivero Fresia en Picarquín, San Francisco de Mostazal. Consulta precios y disponibilidad por WhatsApp.">
+  <meta name="theme-color" content="#244d3c">
+  <meta property="og:title" content="Vivero Fresia · Flores, plantas y suculentas">
+  <meta property="og:description" content="Desde Picarquín, San Francisco de Mostazal. Explora nuestra galería y consulta por WhatsApp.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body id="inicio">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="location">Picarquín · San Francisco de Mostazal, Chile</div>
+<header class="header wrap">
+  <a class="brand" href="#inicio" aria-label="Vivero Fresia, inicio"><img src="imagenes/web/logos.webp" alt="" width="56" height="56"><span>Vivero <strong>Fresia</strong></span></a>
+  <nav aria-label="Navegación principal"><a href="#galeria">Plantas y flores</a><a href="#quienes-somos">El vivero</a><a href="#contacto">Contacto</a></nav>
+  <a class="button small" href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20por%20los%20productos%20de%20Vivero%20Fresia." target="_blank" rel="noopener noreferrer">Conversemos <span aria-hidden="true">↗</span></a>
+</header>
+<main id="contenido">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy"><p class="eyebrow">Vivero Fresia · Desde 2020</p><h1 id="hero-title">Un poco de verde.<br><em>Mucha vida.</em></h1><p>Flores, plantas y suculentas para llenar de color tus espacios. Conoce nuestro vivero en Picarquín, San Francisco de Mostazal.</p><div class="actions"><a class="button" href="#galeria">Explorar las plantas <span aria-hidden="true">↓</span></a><a class="text-link" href="#contacto">Contáctanos <span aria-hidden="true">↗</span></a></div><div class="hero-note"><span aria-hidden="true">✳</span> Un espacio para descubrir y cultivar.</div></div>
+    <div class="hero-image"><img src="imagenes/web/casa2.webp" alt="Flores rosadas y amarillas entre follaje verde" width="1440" height="1000" fetchpriority="high"><span class="image-caption">El color empieza aquí.</span></div>
+  </section>
+  <div class="intro-strip"><div class="wrap"><span>Flores y plantas</span><span aria-hidden="true">✳</span><span>Cáctus y suculentas</span><span aria-hidden="true">✳</span><span>Mermeladas y conservas</span></div></div>
+  <section id="galeria" class="section wrap" aria-labelledby="plants-title"><div class="section-heading"><div><p class="eyebrow">Encuentra tu próximo rincón verde</p><h2 id="plants-title">Plantas y flores</h2></div><p>Explora nuestra galería. Para conocer precios y disponibilidad, consulta directamente por WhatsApp.</p></div>
+    <div class="grid"><article class="product"><button class="photo" type="button" data-name="Lilium longiflorum" aria-label="Ampliar imagen de Lilium longiflorum"><img src="imagenes/web/1.webp" alt="Lilium longiflorum" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Lilium longiflorum</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Lilium%20longiflorum." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Híbrido de té" aria-label="Ampliar imagen de Híbrido de té"><img src="imagenes/web/2.webp" alt="Híbrido de té" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Híbrido de té</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20H%C3%ADbrido%20de%20t%C3%A9." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Aloe faroe" aria-label="Ampliar imagen de Aloe faroe"><img src="imagenes/web/3.webp" alt="Aloe faroe" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Aloe faroe</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Aloe%20faroe." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Cáctus" aria-label="Ampliar imagen de Cáctus"><img src="imagenes/web/4.webp" alt="Cáctus" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Cáctus</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20C%C3%A1ctus." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Rosa mística" aria-label="Ampliar imagen de Rosa mística"><img src="imagenes/web/5.webp" alt="Rosa mística" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Rosa mística</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Rosa%20m%C3%ADstica." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Lilium otoñal" aria-label="Ampliar imagen de Lilium otoñal"><img src="imagenes/web/6.webp" alt="Lilium otoñal" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Lilium otoñal</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Lilium%20oto%C3%B1al." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Dimorfoteca" aria-label="Ampliar imagen de Dimorfoteca"><img src="imagenes/web/7.webp" alt="Dimorfoteca" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Dimorfoteca</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Dimorfoteca." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Azucena de porcelana" aria-label="Ampliar imagen de Azucena de porcelana"><img src="imagenes/web/8.webp" alt="Azucena de porcelana" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Azucena de porcelana</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Azucena%20de%20porcelana." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Cáctus eriosyce" aria-label="Ampliar imagen de Cáctus eriosyce"><img src="imagenes/web/9.webp" alt="Cáctus eriosyce" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Cáctus eriosyce</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20C%C3%A1ctus%20eriosyce." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Cáctus lirio" aria-label="Ampliar imagen de Cáctus lirio"><img src="imagenes/web/10.webp" alt="Cáctus lirio" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Cáctus lirio</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20C%C3%A1ctus%20lirio." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Rosa" aria-label="Ampliar imagen de Rosa"><img src="imagenes/web/11.webp" alt="Rosa" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Rosa</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Rosa." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Nopal" aria-label="Ampliar imagen de Nopal"><img src="imagenes/web/12.webp" alt="Nopal" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Nopal</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Nopal." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Sábila" aria-label="Ampliar imagen de Sábila"><img src="imagenes/web/13.webp" alt="Sábila" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Sábila</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20S%C3%A1bila." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Echeveria" aria-label="Ampliar imagen de Echeveria"><img src="imagenes/web/14.webp" alt="Echeveria" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Echeveria</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Echeveria." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Cryptocorine atfinis" aria-label="Ampliar imagen de Cryptocorine atfinis"><img src="imagenes/web/15.webp" alt="Cryptocorine atfinis" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Cryptocorine atfinis</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Cryptocorine%20atfinis." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article></div>
+  </section>
+  <section id="quienes-somos" class="about"><div class="wrap about-grid"><img src="imagenes/web/casa.webp" alt="Variedad de flores de colores en un jardín" width="1440" height="1000" loading="lazy" decoding="async"><div><p class="eyebrow">Nuestras raíces</p><h2>Desde Picarquín,<br>con amor por las plantas.</h2><p>Vivero Fresia nació en 2020 en San Francisco de Mostazal, Picarquín, con la misión de ofrecer variedades de flores, plantas y suculentas a nuestros clientes.</p><p>Te invitamos a conocer nuestra galería y conversar sobre las plantas que te interesan.</p><a class="text-link" href="#contacto">Hablemos de plantas <span aria-hidden="true">↗</span></a></div></div></section>
+  <section id="galeria2" class="section wrap" aria-labelledby="preserves-title"><div class="section-heading"><div><p class="eyebrow">También en Vivero Fresia</p><h2 id="preserves-title">Mermeladas y conservas</h2></div><p>Conoce las variedades de nuestra galería y consulta su disponibilidad.</p></div><div class="grid preserves"><article class="product"><button class="photo" type="button" data-name="Mermelada de damasco · ½ kilo" aria-label="Ampliar imagen de Mermelada de damasco · ½ kilo"><img src="imagenes/web/merme1.webp" alt="Mermelada de damasco · ½ kilo" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Mermelada de damasco · ½ kilo</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Mermelada%20de%20damasco%20%C2%B7%20%C2%BD%20kilo." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Mermelada de damasco · 1 kilo" aria-label="Ampliar imagen de Mermelada de damasco · 1 kilo"><img src="imagenes/web/merme2.webp" alt="Mermelada de damasco · 1 kilo" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Mermelada de damasco · 1 kilo</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Mermelada%20de%20damasco%20%C2%B7%201%20kilo." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article>
+<article class="product"><button class="photo" type="button" data-name="Conserva de durazno · 1 kilo" aria-label="Ampliar imagen de Conserva de durazno · 1 kilo"><img src="imagenes/web/merme3.webp" alt="Conserva de durazno · 1 kilo" width="640" height="800" loading="lazy" decoding="async"></button><div class="product-info"><h3>Conserva de durazno · 1 kilo</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20precio%20y%20disponibilidad%20de%20Conserva%20de%20durazno%20%C2%B7%201%20kilo." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a></div></article></div></section>
+  <section id="contacto" class="contact wrap" aria-labelledby="contact-title"><div><p class="eyebrow">Conversemos</p><h2 id="contact-title">¿Qué te gustaría cultivar?</h2><p>Escríbenos para consultar precios, disponibilidad o coordinar tu visita.</p><a class="button light" href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20por%20los%20productos%20de%20Vivero%20Fresia." target="_blank" rel="noopener noreferrer">Escribir por WhatsApp <span aria-hidden="true">↗</span></a></div><div class="contact-details"><h3>Encuéntranos</h3><p>Picarquín<br>San Francisco de Mostazal, Chile</p><h3>WhatsApp</h3><a href="https://wa.me/56945973179?text=Hola%2C%20quisiera%20consultar%20por%20los%20productos%20de%20Vivero%20Fresia." target="_blank" rel="noopener noreferrer">+56 9 4597 3179</a><p class="contact-note">Consulta la dirección exacta y los horarios antes de tu visita.</p></div></section>
+</main>
+<footer class="wrap footer"><a class="brand" href="#inicio">Vivero <strong>Fresia</strong></a><p>Flores, plantas y vida en Picarquín.</p><a href="#inicio">Volver al inicio ↑</a></footer>
+<dialog aria-labelledby="photo-title"><div class="dialog-bar"><h2 id="photo-title">Imagen de producto</h2><button class="close" type="button">Cerrar <span aria-hidden="true">×</span></button></div><img class="expanded" alt=""></dialog>
+</body>
+</html>
