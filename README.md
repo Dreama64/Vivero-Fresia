@@ -8,6 +8,16 @@ Desde esta carpeta, ejecutar `python -m http.server 8000` y abrir `http://localh
 
 ## Cambios de interfaz y funcionamiento
 
+### Tienda y pedidos por WhatsApp
+
+La interfaz usa una estética natural y campestre con fotografías de plantas del repositorio. El catálogo incluye buscador tolerante a tildes y categorías. El carrito permite agregar productos, modificar cantidades entre 1 y 99, quitar productos y conservar la selección en este navegador. Si el almacenamiento está bloqueado o contiene datos inválidos, se usa un carrito en memoria o se descartan las entradas inválidas.
+
+El pedido reúne nombres y cantidades en un único enlace a WhatsApp; el cliente revisa y envía el mensaje allí. No hay cobro en línea, cálculo de total, reserva de stock ni promesa de entrega: el vivero confirma precios, disponibilidad y coordinación de compra. No se inventan precios para simular una venta. Las consultas individuales funcionan sin JavaScript; el carrito y los filtros requieren JavaScript. No se guarda información personal del cliente.
+
+Para actualizar productos, editar las tarjetas estáticas de `index.html`, conservando identificadores `data-id` únicos y estables y su botón `data-add` correspondiente. Los identificadores mantienen la relación con los carritos guardados. No hay panel de administración ni sincronización de stock.
+
+La revisión del carrito cubre búsqueda sin tildes, categorías, resultados vacíos, persistencia al recargar, cantidades, eliminación, carrito vacío, enlace de pedido completo y recuperación de foco. Todas estas pruebas pasan a 320, 390, 768 y 1440 px. Las categorías son agrupaciones de navegación; los nombres botánicos se conservan pendientes de confirmación.
+
 - Diseño adaptable con navegación visible, galería, historia y contacto.
 - Se conservan los 15 nombres de plantas y las tres conservas del sitio original. No se inventan precios, stock, horarios ni dirección exacta. Los nombres botánicos requieren confirmación del propietario.
 - WhatsApp usa el número del JavaScript original y mensajes específicos para cada producto. El enlace permite consultar; no constituye una compra ni garantiza disponibilidad.
@@ -38,7 +48,8 @@ Las pruebas no envían mensajes ni verifican que el número siga siendo atendido
 
 - `index.html`: contenido estático indexable.
 - `styles.css`: diseño y adaptación a pantallas.
-- `script.js`: ampliación de fotografías.
+- `shop.css`: presentación de la tienda, filtros y carrito.
+- `script.js`: carrito persistente, búsqueda, filtros y ampliación de fotografías.
 - `imagenes/web/`: versiones optimizadas; originales preservados en `imagenes/`.
 - `tests/browser.cjs`: revisión funcional en Chromium.
 
