@@ -14,6 +14,8 @@ test('private catalog, persistent products, image uploads, origin/CSRF and versi
     return fetch(origin+route,{method,headers:{...(cookie ? {Cookie:cookie}:{}),...(method!=='GET' ? {Origin:origin,'X-CSRF-Token':csrf,'Content-Type':'application/json'}:{}),...extra},...(body ? {body:JSON.stringify(body)}:{})});
   }
   try {
+    assert.deepEqual(await (await request('/healthz')).json(),{status:'ok'});
+    assert.equal((await request('/healthz','HEAD')).status,200);
     assert.equal((await request('/api/products')).status,401);
     assert.equal((await request('/api/products','POST',{})).status,401);
     for(const file of ['/server/app.cjs','/data/vivero.sqlite','/.env','/.git/config','/catalog.seed.json']) assert.equal((await request(file)).status,404);

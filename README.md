@@ -13,6 +13,7 @@ Tienda: `http://127.0.0.1:8768`. Panel privado: `http://127.0.0.1:8768/admin`. L
 
 - [Guía para administrar productos](ADMINISTRACION.md)
 - [Alojamiento, acceso, respaldos y pruebas](ALOJAMIENTO.md)
+- [Servicio independiente en Render: presupuesto y pasos](RENDER.md)
 
 ## Funciones
 
@@ -40,7 +41,7 @@ La copia HTML también puede abrirse como sitio estático de referencia, pero no
 
 ## Validación
 
-`npm test` verifica acceso privado, protección de archivos, origen y CSRF, subida de foto, validación de precio, texto escapado, edición, ocultación, agotados, conflictos de versión, persistencia tras reiniciar, eliminación, logout y límite de intentos.
+`npm test` verifica acceso privado, protección de archivos, origen y CSRF, subida de foto, validación de precio, texto escapado, edición, ocultación, agotados, conflictos de versión, persistencia tras reiniciar, eliminación, logout y límite de intentos. También comprueba `/healthz`, respaldo coherente, restauración de catálogo y fotos, rechazo de corrupción, prevención de sobrescritura y configuración segura de producción.
 
 Las pruebas de tienda cubren 320, 390, 768 y 1440 px: catálogo, imágenes, anclas, búsqueda, categorías, carrito persistente, cantidades, resultados vacíos, mensajes de WhatsApp, navegación con teclado y almacenamiento bloqueado/corrupto. El panel se prueba a 390 y 1440 px: login, foto, creación, precio, total del carrito, agotado, ocultación, edición, confirmación de borrado y cierre de sesión.
 

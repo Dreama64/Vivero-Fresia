@@ -30,8 +30,9 @@ function validateProduct(body) {
   if (typeof body.available !== 'boolean' || typeof body.visible !== 'boolean') throw failure(400, 'Revisa disponibilidad y visibilidad.');
   return { name:text('name',100,true), category:text('category',60,true), description:text('description',2000), price:body.price, available:Number(body.available), visible:Number(body.visible) };
 }
-function createApp({ dataDir = process.env.DATA_DIR || path.join(root,'data'), publicOrigin = process.env.PUBLIC_ORIGIN, production = process.env.NODE_ENV === 'production', initialPassword } = {}) {
-  dataDir = path.resolve(dataDir);
+function createApp({ dataDir = process.env.DATA_DIR, publicOrigin = process.env.PUBLIC_ORIGIN || process.env.RENDER_EXTERNAL_URL, production = process.env.NODE_ENV === 'production', initialPassword } = {}) {
+  if (production && !dataDir) throw new Error('Producción requiere DATA_DIR apuntando al disco persistente.');
+  dataDir = path.resolve(dataDir || path.join(root,'data'));
   if (production && (!publicOrigin || new URL(publicOrigin).protocol !== 'https:')) throw new Error('Producción requiere PUBLIC_ORIGIN con HTTPS.');
   if (publicOrigin && new URL(publicOrigin).origin !== publicOrigin) throw new Error('PUBLIC_ORIGIN debe ser un origen sin ruta ni barra final.');
   const db = openDatabase(dataDir);
@@ -62,6 +63,12 @@ function createApp({ dataDir = process.env.DATA_DIR || path.join(root,'data'), p
     try {
       const url = new URL(req.url, 'http://localhost');
       const route = decodeURIComponent(url.pathname);
+      if (route === '/healthz' && ['GET','HEAD'].includes(req.method)) {
+        db.prepare('SELECT 1 FROM products LIMIT 1').get();
+        fs.accessSync(path.join(dataDir,'images'),fs.constants.R_OK | fs.constants.W_OK);
+        if (req.method === 'HEAD') { res.writeHead(200,{'Cache-Control':'no-store'}); return res.end(); }
+        return json(res,200,{status:'ok'});
+      }
       if (route === '/api/session' && req.method === 'GET') { const s = session(req); return json(res,200,{ authenticated:Boolean(s), ...(s ? { csrf:s.csrf } : {}) }); }
       if (route === '/api/login' && req.method === 'POST') {
         sameOrigin(req);
@@ -158,5 +165,15 @@ function createApp({ dataDir = process.env.DATA_DIR || path.join(root,'data'), p
 if (require.main === module) {
   const {server} = createApp();
   server.listen(Number(process.env.PORT || 8768),process.env.HOST || '127.0.0.1',() => console.log(`Vivero disponible en el puerto ${server.address().port}`));
+  let stopping = false;
+  const shutdown = () => {
+    if (stopping) return;
+    stopping = true;
+    const timeout = setTimeout(() => process.exit(1),15000);
+    timeout.unref();
+    server.close(() => { clearTimeout(timeout); process.exitCode = 0; });
+  };
+  process.once('SIGTERM',shutdown);
+  process.once('SIGINT',shutdown);
 }
 module.exports = {createApp};
