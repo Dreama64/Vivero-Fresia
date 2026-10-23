@@ -23,6 +23,11 @@ function secret(prompt) {
   if(password.length<12 || password.length>200)throw new Error('Usa entre 12 y 200 caracteres.');
   if(password!==await secret('Repite la contraseña: '))throw new Error('Las contraseñas no coinciden.');
   const db=openDatabase(path.resolve(process.env.DATA_DIR || path.join(__dirname,'../data')));
-  db.prepare("INSERT INTO settings VALUES('admin_password',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value").run(passwordHash(password));
-  db.exec('DELETE FROM sessions'); db.close(); console.log('Contraseña configurada. Las sesiones anteriores se cerraron.');
+  db.exec('BEGIN IMMEDIATE');
+  try {
+    db.prepare("INSERT INTO settings VALUES('admin_password',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value").run(passwordHash(password));
+    db.exec('DELETE FROM sessions; COMMIT');
+  } catch (error) { db.exec('ROLLBACK'); throw error; }
+  finally { db.close(); }
+  console.log('Contraseña configurada. Las sesiones anteriores se cerraron.');
 })().catch(error=>{console.error(error.message);process.exitCode=1;});

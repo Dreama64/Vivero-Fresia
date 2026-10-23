@@ -7,7 +7,7 @@
 - HTTPS delante de Node para publicación. `PUBLIC_ORIGIN` debe ser el origen público exacto, sin ruta ni barra final.
 - Base de datos SQLite y fotos en la carpeta `DATA_DIR`. No usar discos efímeros ni compartir SQLite entre múltiples servidores.
 
-GitHub Pages no ejecuta este servidor. No se ha contratado hosting, registrado dominio ni publicado producción. La elección del proveedor queda pendiente de acuerdo con el usuario. No hay dependencia de un proveedor de base de datos externo.
+GitHub Pages no ejecuta este servidor. Se preparó un servicio **nuevo e independiente** en Render, sin crear recursos de pago todavía. Ver `RENDER.md` para presupuesto, configuración y comprobaciones. Los servicios de Colectivos están fuera del alcance y no deben modificarse. No hay dependencia de un proveedor de base de datos externo.
 
 ## Probar en el computador
 
@@ -37,7 +37,7 @@ No hay paquetes de ejecución externos. Playwright es una dependencia de desarro
 
 En el primer arranque se importan una sola vez los 18 productos de `catalog.seed.json`, con sus identificadores originales y sin precios inventados. Después, SQLite es la fuente de verdad. Editar el seed o los archivos HTML no actualiza productos existentes en la base de datos.
 
-Respaldar **toda** la carpeta `DATA_DIR`, incluyendo base de datos, archivos auxiliares SQLite y `images/`. Para una copia coherente sencilla, detener Node, copiar la carpeta completa a un lugar privado y volver a iniciarlo. No copiar únicamente el archivo SQLite mientras está recibiendo escrituras. Al restaurar, detener Node, restaurar la carpeta completa y comprobar los permisos antes de arrancar. Probar restauraciones regularmente.
+Ejecutar `npm run backup` para generar una instantánea SQLite coherente mediante la API nativa, copiar las fotos y verificar hashes e integridad. Las sesiones se eliminan de la copia. Descargar el respaldo completo a un lugar privado fuera de Render. `npm run restore -- RESPALDO CARPETA_NUEVA` valida el respaldo y copia a un directorio nuevo sin sobrescribir datos en uso. Ver `RENDER.md` para retención, transferencia y recuperación. No copiar únicamente el archivo SQLite mientras está recibiendo escrituras. Como alternativa, detener Node y copiar toda `DATA_DIR` con sus archivos auxiliares. Probar restauraciones regularmente.
 
 Los productos eliminados desaparecen de la base de datos, pero sus fotos se conservan en disco para evitar romper referencias a imágenes compartidas y permitir recuperación desde respaldos. También pueden quedar fotos subidas si se cancela una edición. Supervisar espacio; la limpieza de fotos huérfanas debe hacerse con copia previa y revisión de referencias. No hay borrado automático de fotos ni restauración de registros eliminados en la interfaz.
 
