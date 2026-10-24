@@ -1,0 +1,30 @@
+{
+  "status": "PREPARADO_NO_CREAR_SIN_AUTORIZACION_DE_COSTO",
+  "name": "vivero-fresia",
+  "repository": "https://github.com/Dreama64/Vivero-Fresia",
+  "branch": "main",
+  "runtime": "node",
+  "nodeVersion": "24",
+  "plan": "0.5c-512mb",
+  "instances": 1,
+  "region": "oregon",
+  "buildCommand": "npm install --omit=dev",
+  "startCommand": "npm start",
+  "healthCheckPath": "/healthz",
+  "initialAutoDeploy": false,
+  "disk": { "name": "vivero-data", "mountPath": "/var/data", "sizeGB": 1 },
+  "environment": {
+    "NODE_ENV": "production",
+    "HOST": "0.0.0.0",
+    "DATA_DIR": "/var/data",
+    "NODE_VERSION": "24",
+    "PORT": "USAR_EL_VALOR_INYECTADO_POR_RENDER",
+    "PUBLIC_ORIGIN": "CONFIRMAR_URL_HTTPS_REAL_TRAS_CREAR_EL_SERVICIO"
+  },
+  "bootstrapOrigin": "RENDER_EXTERNAL_URL; después establecer PUBLIC_ORIGIN explícitamente",
+  "administratorSetup": "npm run setup; entrada interactiva del propietario, nunca en variables de entorno ni logs",
+  "monthlyEstimateUSD": { "server": 7, "disk": 0.25, "manualOffsiteBackupsOnOwnedComputer": 0, "baseTotal": 7.25 },
+  "estimateExcludes": ["impuestos", "conversión de moneda", "consumo adicional sobre cuotas compartidas", "dominio .cl"],
+  "protectedServicesDoNotModify": ["servidor-colectivos-la-punta", "servidor-colectivos"],
+  "note": "Documento de revisión, no es un Blueprint ni crea recursos. No reutilizar el plan anterior de cambio de Colectivos."
+}

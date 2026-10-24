@@ -34,4 +34,4 @@ Confirma disponibilidad, precio final y entrega o retiro directamente con el cli
 
 Cierra sesión cuando termines en un dispositivo compartido. La sesión dura hasta ocho horas. Si olvidas tu contraseña, quien administre el alojamiento debe restablecerla siguiendo `ALOJAMIENTO.md`. No envíes la contraseña por el formulario de productos.
 
-El panel necesita conexión con el servidor para guardar. No basta abrir los archivos ni subirlos a GitHub Pages. Antes de contratar alojamiento, pide que confirme compatibilidad con los requisitos de `ALOJAMIENTO.md`.
+El panel necesita conexión con el servidor para guardar. No basta abrir los archivos ni subirlos a GitHub Pages. El despliegue independiente en Render está descrito en `RENDER.md`; se activa después de aprobar el presupuesto, sin modificar los servicios de Colectivos. Quien administre el alojamiento debe descargar y comprobar los respaldos de productos y fotos.
