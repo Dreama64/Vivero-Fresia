@@ -74,14 +74,19 @@
   .photo img { height:260px; }
 }
 @media(max-width:760px) {
-  .header { flex-wrap:wrap; justify-content:space-between; gap:14px; }
-  .header nav { order:3; width:100%; justify-content:center; padding-top:10px; border-top:1px solid var(--line); }
-  .brand { font-size:26px; }
-  .brand img { width:45px; height:45px; }
+  html { scroll-padding-top:130px; }
+  .header { display:grid; grid-template-columns:minmax(0,1fr) auto; padding-block:10px 0; gap:8px 10px; }
+  .header nav { grid-column:1 / -1; grid-row:2; width:100%; justify-content:space-between; gap:8px; padding-top:0; border-top:1px solid var(--line); }
+  .header nav a { display:flex; align-items:center; min-height:44px; padding-block:8px; }
+  .header .brand { grid-column:1; grid-row:1; }
+  .brand { font-size:clamp(20px,4.8vw,26px); gap:8px; white-space:nowrap; }
+  .brand img { width:38px; height:38px; }
   .brand small { font-size:7px; }
-  .cart-trigger { font-size:12px; gap:8px; padding:8px 10px; }
+  .brand small { letter-spacing:.08em; margin-top:3px; }
+  .cart-trigger { grid-column:2; grid-row:1; font-size:11px; gap:5px; padding:7px; min-height:44px; white-space:nowrap; }
+  .cart-count { min-width:22px; height:22px; }
   .hero-layout { grid-template-columns:1fr 1fr; gap:18px; padding-block:32px; }
-  .hero h1 { font-size:3.5rem; }
+  .hero h1 { font-size:clamp(2rem,5.3vw,2.5rem); }
   .hero-garden { height:420px; }
   .garden-main { width:90%; }
   .garden-secondary { width:58%; }
@@ -91,8 +96,12 @@
 }
 @media(max-width:550px) {
   .hero-layout { grid-template-columns:1fr; gap:24px; }
-  .hero h1 { font-size:3.8rem; }
-  .hero h1 em br { display:none; }
+  .hero h1 { font-size:clamp(2.25rem,9vw,3rem); line-height:1.08; }
+  .hero h1 em br { display:initial; }
+  .hero .eyebrow { font-size:10px; letter-spacing:.12em; margin-bottom:16px; }
+  .hero-layout { padding-block:24px 32px; }
+  .hero-copy>p:not(.eyebrow) { margin-top:18px; }
+  .hero-copy>.button { margin-top:20px; }
   .hero-garden { height:375px; width:100%; max-width:390px; margin:auto; }
   .garden-main { width:73%; }
   .garden-secondary { width:48%; height:64%; }

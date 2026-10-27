@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
   const browser = await chromium.launch({ headless: true, ...(process.env.BROWSER_CHANNEL ? { channel: process.env.BROWSER_CHANNEL } : {}) });
   try {
     const errors = [];
-    for (const width of [320, 390, 768, 1440]) {
+    for (const width of [320, 360, 390, 550, 650, 760, 768, 1440]) {
       const page = await browser.newPage({ viewport: { width, height: 900 } });
       page.on('pageerror', error => errors.push(error.message));
       page.on('response', response => { if (response.status() >= 400) errors.push(response.url()); });
@@ -26,6 +26,17 @@ const server = http.createServer((req, res) => {
       assert.equal(await page.locator('h1').count(), 1);
       assert.equal(await page.locator('.product').count(), 18);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `overflow at ${width}`);
+      if (width <= 760) {
+        const header = await page.locator('.header').boundingBox();
+        const brand = await page.locator('.header .brand').boundingBox();
+        const cart = await page.locator('.cart-trigger').boundingBox();
+        assert(header.height <= 115, `compact header at ${width}`);
+        assert(brand.x + brand.width <= cart.x, `brand and cart do not overlap at ${width}`);
+        assert(Math.abs(brand.y - cart.y) < 12, `brand and cart share a row at ${width}`);
+        const title = await page.locator('h1').boundingBox();
+        const lineHeight = await page.locator('h1').evaluate(node => parseFloat(getComputedStyle(node).lineHeight));
+        assert(title.height <= lineHeight * 3 + 2, `title stays within three lines at ${width}`);
+      }
       for (const anchor of await page.locator('a[href^="#"]').evaluateAll(nodes => nodes.map(node => node.hash))) assert.equal(await page.locator(anchor).count(), 1);
       for (const href of await page.locator('a[href^="https://wa.me/"]').evaluateAll(nodes => nodes.map(node => node.href))) {
         const url = new URL(href);
