@@ -48,3 +48,7 @@ Las pruebas de tienda cubren 320, 390, 768 y 1440 px: catálogo, imágenes, ancl
 Se comprueban además la sintaxis JavaScript y `git diff --check`. La revisión de accesibilidad es parcial. Las pruebas no envían mensajes ni verifican que el número de WhatsApp siga siendo atendido.
 
 No hay hosting contratado ni despliegue de producción. Los cambios se entregan en el pull request para revisión; fusionar y publicar requiere aprobación del usuario.
+
+## Visitas de la web
+
+Integración opcional con Cloudflare Web Analytics: configuración, prevención de duplicados y consulta de métricas en [ANALITICA.md](ANALITICA.md).

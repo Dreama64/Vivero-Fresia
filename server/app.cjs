@@ -30,11 +30,13 @@ function validateProduct(body) {
   if (typeof body.available !== 'boolean' || typeof body.visible !== 'boolean') throw failure(400, 'Revisa disponibilidad y visibilidad.');
   return { name:text('name',100,true), category:text('category',60,true), description:text('description',2000), price:body.price, available:Number(body.available), visible:Number(body.visible) };
 }
-function createApp({ dataDir = process.env.DATA_DIR, publicOrigin = process.env.PUBLIC_ORIGIN || process.env.RENDER_EXTERNAL_URL, production = process.env.NODE_ENV === 'production', initialPassword } = {}) {
+function createApp({ dataDir = process.env.DATA_DIR, publicOrigin = process.env.PUBLIC_ORIGIN || process.env.RENDER_EXTERNAL_URL, analyticsToken = process.env.CLOUDFLARE_WEB_ANALYTICS_TOKEN || '', production = process.env.NODE_ENV === 'production', initialPassword } = {}) {
   if (production && !dataDir) throw new Error('Producción requiere DATA_DIR apuntando al disco persistente.');
   dataDir = path.resolve(dataDir || path.join(root,'data'));
   if (production && (!publicOrigin || new URL(publicOrigin).protocol !== 'https:')) throw new Error('Producción requiere PUBLIC_ORIGIN con HTTPS.');
   if (publicOrigin && new URL(publicOrigin).origin !== publicOrigin) throw new Error('PUBLIC_ORIGIN debe ser un origen sin ruta ni barra final.');
+  if (analyticsToken && !/^[a-f0-9]{32}$/i.test(analyticsToken)) throw new Error('CLOUDFLARE_WEB_ANALYTICS_TOKEN debe ser el token público de 32 caracteres de Web Analytics.');
+  const analyticsEnabled = production && Boolean(analyticsToken);
   const db = openDatabase(dataDir);
   if (initialPassword && !db.prepare("SELECT value FROM settings WHERE key='admin_password'").get()) db.prepare("INSERT INTO settings VALUES('admin_password',?)").run(passwordHash(initialPassword));
   const attempts = new Map();
@@ -142,8 +144,13 @@ function createApp({ dataDir = process.env.DATA_DIR, publicOrigin = process.env.
       if (route.startsWith('/api/')) throw failure(404,'No encontramos esa acción.');
       if (!['GET','HEAD'].includes(req.method)) throw failure(405,'Método no permitido.');
       if (route === '/' || route === '/index.html') {
+        let html = storefront(fs.readFileSync(path.join(root,'index.html'),'utf8'),all().filter(p => p.visible));
+        if (analyticsEnabled) {
+          res.setHeader('Content-Security-Policy', "default-src 'self'; img-src 'self' blob:; script-src 'self' https://static.cloudflareinsights.com/beacon.min.js; style-src 'self'; connect-src 'self' https://cloudflareinsights.com; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
+          html = html.replace('</body>', `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='${JSON.stringify({token:analyticsToken})}'></script>\n</body>`);
+        }
         res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});
-        return res.end(req.method === 'HEAD' ? undefined : storefront(fs.readFileSync(path.join(root,'index.html'),'utf8'),all().filter(p => p.visible)));
+        return res.end(req.method === 'HEAD' ? undefined : html);
       }
       let file;
       if (/^\/uploads\/[a-f0-9-]{36}\.webp$/.test(route)) file = path.join(dataDir,'images',path.basename(route));
